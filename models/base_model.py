@@ -24,7 +24,16 @@ class BaseModel:
     def save(self):
         self.updated_at = datetime.now()
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        if len(kwargs):
+            for key in kwargs.keys():
+                if key == "__class__":
+                    continue
+                if key == "created_at" or key == "updated_at":
+                    form = "%Y-%m-%dT%H:%M:%S.%f"
+                    self.__setattr__(key, datetime.strptime(kwargs[key], form))
+                else:
+                    self.__setattr__(key, kwargs[key])
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
         self.id = str(uuid.uuid4())
