@@ -1,10 +1,9 @@
 #!/usr/bin/python3
+""" Class for console of HBNB """
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """ Class for console of HBNB """
-
     intro = ""
     prompt = "(hbnb) "
 
@@ -15,6 +14,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """ Command for user interrupt with CTRL+C """
+
         return True
 
 
