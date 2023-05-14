@@ -6,7 +6,7 @@ class HBNBCommand(cmd.Cmd):
     """ Class for console of HBNB """
 
     intro = ""
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
 
     def do_quit(self, arg):
         """ Quit command to exit the program """
