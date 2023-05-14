@@ -3,7 +3,7 @@ from models.base_model import BaseModel
 """ The model for creating place object """
 
 
-class State(BaseModel):
+class Place(BaseModel):
 
     city_id = ""
     user_id = ""
