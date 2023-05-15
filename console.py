@@ -1,7 +1,7 @@
 #!/usr/bin/python3
+"""Class for console of HBNB"""
 import cmd
 import json
-
 from models.engine.file_storage import FileStorage
 from models.engine.file_storage import ObjectEncoder
 from models import storage
@@ -15,7 +15,6 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Class for console of HBNB"""
 
     intro = ""
     prompt = "(hbnb)  "

@@ -38,7 +38,8 @@ class BaseModel:
             for key in kwargs.keys():
                 if key != "__class__":
                     if key == "created_at" or key == "updated_at":
-                        timed = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
+                        form = "%Y-%m-%dT%H:%M:%S.%f"
+                        timed = datetime.strptime(kwargs[key], form)
                         self.__setattr__(key, timed)
                     else:
                         self.__setattr__(key, kwargs[key])
