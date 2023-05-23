@@ -1,0 +1,41 @@
+.places h1 {
+    font-size: 30px;
+}
+
+.places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+article .title {
+    text-align: center;
+}
+
+.title {
+    /* display: inline-block; */
+}
+
+.price_by_night {
+    color: #FF5A5F;
+    border: #FF5A5F solid 4px;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    font-size: 30px;
+    text-align: center;
+    float: right;
+}
+
+.price {
+    margin-top: 150px;
+    margin-bottom: 15px;
+}
+
+.places {
+    align-items: center;
+    justify-content: center;
+}
