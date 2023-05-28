@@ -11,6 +11,11 @@
     display: inline-block;
 }
 
+.price {
+    margin-top: 20px !important;
+    color: blue;
+}
+
 article .title {
     text-align: center;
 }
