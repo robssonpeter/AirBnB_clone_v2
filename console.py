@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 """Class for console of HBNB"""
+class Place:
+    city_id = "0001"
+
+
 import cmd
 import json
 from models.engine.file_storage import FileStorage
@@ -51,7 +55,58 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """create <class_name>"""
+        
+        args = arg.split()
+        keys = []
+        values = []
+        attributes = {}
+        for arg in args:
+            if "=" in arg:
+                val = arg.split('=')
+                """ check if it a string """
+                key_length = len(val[1])
+                value = val[1]
+                if(value[0] == "\"" and value[key_length - 1] == "\""):
+                    """ This is a string"""
+                    keys.append(val[0])
+                    value = value[1:key_length - 1]
+                    value = value.replace("\"", "\\\"")
+                    value = value.replace("\'", "\\\'")
+                    value = value.replace("_", " ")
+                    values.append(value)
+                    attributes[val[0]] = value
+                elif "." in value:
+                    """ this is a float """
+                    keys.append(val[0])
+                    values.append(float(val[1]))
+                    attributes[val[0]] = val[1]
 
+                elif value.isnumeric():
+                    """ this is an integer """
+                    keys.append(val[0])
+                    values.append(int(val[1]))
+                    attributes[val[0]] = val[1]
+        """ create a new instance as seen below """
+        new_class = type(args[0], (BaseModel, ), attributes)
+        instance = new_class()
+        """ for key in attributes.keys():
+            setattr(instance, key, attributes[key]) """
+        print(instance.id)
+        storage.new(instance)
+        storage.save()
+        return
+        if len(objects):
+            cls = globals()[args[0]]
+            instance = cls()
+            index = 0
+            for key in keys:
+                instance[key] = values[index]
+                index += 1
+            print(instance)
+            return
+        """print(keys)
+        print(values)
+        return"""
         if len(arg) == 0:
             print("** class name missing **")
         elif not self.class_exists(arg):
@@ -127,15 +182,19 @@ class HBNBCommand(cmd.Cmd):
         """show all instances"""
 
         instances = storage.all()
+        objects = []
         if arg and not self.class_exists(arg):
             print("** class doesn't exist **")
         elif len(arg):
             for key in instances.keys():
                 if arg == key.split(".")[0]:
-                    print(ObjectEncoder().encode(instances[key]))
+                    """print(ObjectEncoder().encode(instances[key]))"""
+                    objects.append(ObjectEncoder().encode(instances[key]))
         else:
             for key in instances.keys():
-                print(json.dumps(instances[key]))
+                """print(json.dumps(instances[key]))"""
+                objects.append(json.dumps(instances[key]))
+        print(objects)
 
     def do_update(self, cls, uid="", attribute="", new_value=""):
         """update <class_name> <id> <attribute> <new_value>"""
