@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 """Class for console of HBNB"""
-class Place:
-    city_id = "0001"
-
 
 import cmd
 import json
@@ -55,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """create <class_name>"""
-        
+
         args = arg.split()
         keys = []
         values = []
