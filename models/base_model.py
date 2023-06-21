@@ -2,13 +2,15 @@
 import uuid
 from datetime import datetime
 from models import storage
+from sqlalchemy.orm import declarative_base
+from sqlalchemy import String, Integer, Column, DateTime
 """ The base model object definition """
 
-
+Base = declarative_base()
 class BaseModel:
-    id = str(uuid.uuid4())
-    created_at = datetime.now()
-    updated_at = datetime.now()
+    id = Column(String(60), primary_key=True, nullable=False)
+    created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
+    updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
 
     def __str__(self):
         return f"[BaseModel] ({self.id}) {self.__dict__}"

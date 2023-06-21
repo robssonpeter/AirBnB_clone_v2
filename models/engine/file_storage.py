@@ -3,7 +3,6 @@ from os.path import isfile
 from json import JSONEncoder
 from datetime import datetime
 
-
 class ObjectEncoder(JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
