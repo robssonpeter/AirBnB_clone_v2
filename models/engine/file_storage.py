@@ -14,7 +14,7 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-    def all(self):
+    def all(self, cls=None):
         return self.__objects
 
     def new(self, obj):
@@ -27,6 +27,11 @@ class FileStorage:
             """string = json.dumps(self.__objects)"""
             string = ObjectEncoder().encode(self.__objects)
             file.write(string)
+    
+    def delete(self, obj=None):
+        if obj is not None:
+            del self.__objects[f"{type(obj).__name__}.{obj.id}"]
+
 
     def reload(self):
         if isfile(self.__file_path):
