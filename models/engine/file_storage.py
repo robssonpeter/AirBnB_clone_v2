@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import json
 from os.path import isfile
 from json import JSONEncoder
@@ -15,7 +16,13 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        return self.__objects
+        if cls is None:
+            return self.__objects
+        filtered_objects = {}
+        for key, value in self.__objects.items():
+            if cls == value.__class__:
+                filtered_objects[key] = value
+        return filtered_objects
 
     def new(self, obj):
         obtype = type(obj).__name__
@@ -24,7 +31,6 @@ class FileStorage:
 
     def save(self):
         with open(self.__file_path, "w", encoding="UTF-8") as file:
-            """string = json.dumps(self.__objects)"""
             string = ObjectEncoder().encode(self.__objects)
             file.write(string)
     
@@ -40,3 +46,12 @@ class FileStorage:
 
                 if len(string):
                     self.__objects = json.loads(string)
+
+    def delete(self, obj=None):
+        if obj is None:
+            return
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        if key in self.__objects:
+            del self.__objects[key]
+
+
