@@ -23,7 +23,7 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def text(text):
     """ return the custom text """
-    return f"C {text}"
+    return f"C {text.replace('-', ' ').replace('_', ' ')}"
 
 
 if __name__ == "__main__":
