@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ The simple web application that start a websrver
     based on flask framework
 """
