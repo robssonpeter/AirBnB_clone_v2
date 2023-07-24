@@ -35,7 +35,7 @@ def python(text):
         return "Python is cool"
     else:
         text = text.replace('-', " ")
-        return f"Python {text}"
+        return f"Python {text.replace('_', ' ')}"
 
 
 if __name__ == "__main__":
