@@ -4,23 +4,23 @@
 #apt-get -y install nginx
 #ufw allow 'Nginx HTTP'
 if [ ! -d "/data/" ]; then
-    mkdir "/data/"
+    sudo mkdir "/data/"
 fi
 
 if [ ! -d "/data/web_static/" ]; then
-    mkdir "/data/web_static/"
+    sudo mkdir "/data/web_static/"
 fi
 
 if [ ! -d "/data/web_static/releases/" ]; then
-    mkdir "/data/web_static/releases/"
+    sudo mkdir "/data/web_static/releases/"
 fi
 
 if [ ! -d "/data/web_static/shared/" ]; then
-    mkdir "data/web_static/shared"
+    sudo mkdir "/data/web_static/shared"
 fi
 
 if [ ! -d "/data/web_static/releases/test/" ]; then
-    mkdir "/data/web_static/releases/test/"
+    sudo mkdir "/data/web_static/releases/test/"
 fi
 
 echo "<html>
@@ -32,7 +32,7 @@ echo "<html>
 </html>" > /data/web_static/releases/test/index.html
 
 if [ -L "/data/web_static/releases/test/" ]; then
-    rm "/data/web_static/releases/test/"
+    sudo rm "/data/web_static/releases/test/"
 fi
 
 ls -s "/data/web_static/current" "/data/web_static/releases/test/"
@@ -44,9 +44,16 @@ echo 'server {
     listen [::]:80 default_server;
     root   /var/www/html;
     index  index.html index.htm;
+    location / {
+        add_header X-Served-By $HOSTNAME;
+    }
     location /hbnb_static/ {
         alias /data/web_static/current/
     }
-}' > /etc/nginx/sites-available/default
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+}
+' > /etc/nginx/sites-available/default
 
 sudo service nginx restart
