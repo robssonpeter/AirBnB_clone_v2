@@ -23,7 +23,7 @@ if [ ! -d "/data/web_static/releases/test/" ]; then
     sudo mkdir "/data/web_static/releases/test/"
 fi
 
-echo "<html>
+sudo echo "<html>
   <head>
   </head>
   <body>
