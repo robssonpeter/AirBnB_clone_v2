@@ -35,6 +35,10 @@ if [ -L "/data/web_static/releases/test/" ]; then
     sudo rm "/data/web_static/releases/test/"
 fi
 
+if [ ! -d "/data/web_static/current" ]; then
+    sudo mkdir "/data/web_static/current"
+fi
+
 ls -s "/data/web_static/current" "/data/web_static/releases/test/"
 
 sudo chown -R ubuntu:ubuntu "/data/"
