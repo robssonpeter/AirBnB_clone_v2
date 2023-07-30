@@ -29,7 +29,7 @@ fi
 
 sudo mkdir -p "/data/web_static/current"
 
-ls -s "/data/web_static/current" "/data/web_static/releases/test/" > /dev/null
+sudo -u root ls -s "/data/web_static/current" "/data/web_static/releases/test/" > /dev/null
 
 sudo chown -R ubuntu:ubuntu "/data/"
 
