@@ -12,7 +12,6 @@ sudo -p mkdir "/data/web_static/releases/"
 sudo -p mkdir "/data/web_static/shared"
 
 sudo -p mkdir "/data/web_static/releases/test/"
-fi
 
 sudo chown ubuntu:ubuntu /etc/nginx/sites-available/default
 
