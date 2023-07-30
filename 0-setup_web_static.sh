@@ -41,7 +41,7 @@ if [ ! -d "/data/web_static/current" ]; then
     sudo mkdir "/data/web_static/current"
 fi
 
-ls -s "/data/web_static/current" "/data/web_static/releases/test/"
+ls -s "/data/web_static/current" "/data/web_static/releases/test/" > /dev/null
 
 sudo chown -R ubuntu:ubuntu "/data/"
 
