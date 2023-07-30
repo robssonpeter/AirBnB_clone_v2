@@ -37,9 +37,9 @@ fi
 
 ls -s "/data/web_static/current" "/data/web_static/releases/test/"
 
-sudo chown -R "/data/" ubuntu:ubuntu
+sudo chown -R ubuntu:ubuntu "/data/"
 
-echo 'server {
+sudo echo 'server {
     listen 80;
     listen [::]:80 default_server;
     root   /var/www/html;
