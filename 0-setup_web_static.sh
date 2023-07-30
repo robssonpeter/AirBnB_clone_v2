@@ -1,26 +1,17 @@
 #!/usr/bin/env bash
 #script to install and configure nginx
-#apt-get -y update
-#apt-get -y install nginx
-#ufw allow 'Nginx HTTP'
-if [ ! -d "/data/" ]; then
-    sudo mkdir "/data/"
-fi
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+sudo -p mkdir "/data/"
 
-if [ ! -d "/data/web_static/" ]; then
-    sudo mkdir "/data/web_static/"
-fi
+sudo -p mkdir "/data/web_static/"
 
-if [ ! -d "/data/web_static/releases/" ]; then
-    sudo mkdir "/data/web_static/releases/"
-fi
+sudo -p mkdir "/data/web_static/releases/"
 
-if [ ! -d "/data/web_static/shared/" ]; then
-    sudo mkdir "/data/web_static/shared"
-fi
+sudo -p mkdir "/data/web_static/shared"
 
-if [ ! -d "/data/web_static/releases/test/" ]; then
-    sudo mkdir "/data/web_static/releases/test/"
+sudo -p mkdir "/data/web_static/releases/test/"
 fi
 
 sudo chown ubuntu:ubuntu /etc/nginx/sites-available/default
@@ -37,9 +28,7 @@ if [ -L "/data/web_static/releases/test/" ]; then
     sudo rm "/data/web_static/releases/test/"
 fi
 
-if [ ! -d "/data/web_static/current" ]; then
-    sudo mkdir "/data/web_static/current"
-fi
+sudo mkdir -p "/data/web_static/current"
 
 ls -s "/data/web_static/current" "/data/web_static/releases/test/" > /dev/null
 
