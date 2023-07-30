@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+
+"""
+File storage class for storing class objects
+"""
+
 import json
 from os.path import isfile
 from json import JSONEncoder
@@ -16,6 +21,7 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
+        """ The method to list all objects """
         if cls is None:
             return self.__objects
         filtered_objects = {}
@@ -54,4 +60,7 @@ class FileStorage:
         if key in self.__objects:
             del self.__objects[key]
 
+    def close(self):
+        """ The method closing and reloading a file """
+        self.reload()
 
