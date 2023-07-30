@@ -54,7 +54,7 @@ sudo echo 'server {
         add_header X-Served-By $HOSTNAME;
     }
     location /hbnb_static/ {
-        alias /data/web_static/current/
+        alias /data/web_static/current/;
     }
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
