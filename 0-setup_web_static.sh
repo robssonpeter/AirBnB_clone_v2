@@ -3,14 +3,8 @@
 apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
-sudo mkdir -p "/data/"
-
-sudo mkdir -p "/data/web_static/"
-
-sudo mkdir -p "/data/web_static/releases/"
 
 sudo mkdir -p "/data/web_static/shared"
-
 sudo mkdir -p "/data/web_static/releases/test/"
 
 sudo chown ubuntu:ubuntu /etc/nginx/sites-available/default
@@ -29,9 +23,10 @@ fi
 
 sudo mkdir -p "/data/web_static/current"
 
-sudo -u root ls -s "/data/web_static/current" "/data/web_static/releases/test/" > /dev/null
+sudo ls -sf "/data/web_static/current" "/data/web_static/releases/test/" > /dev/null
 
-sudo chown -R ubuntu:ubuntu "/data/"
+sudo chown -R ubuntu "/data/"
+sudo chgrp -R ubuntu "/data/"
 
 sudo echo 'server {
     listen 80;
@@ -43,6 +38,7 @@ sudo echo 'server {
     }
     location /hbnb_static/ {
         alias /data/web_static/current/;
+        index  index.html index.htm;
     }
     location /redirect_me {
         return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
