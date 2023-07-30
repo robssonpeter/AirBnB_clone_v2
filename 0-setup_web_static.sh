@@ -23,6 +23,8 @@ if [ ! -d "/data/web_static/releases/test/" ]; then
     sudo mkdir "/data/web_static/releases/test/"
 fi
 
+sudo chown ubuntu:ubuntu /etc/nginx/sites-available/default
+
 sudo echo "<html>
   <head>
   </head>
